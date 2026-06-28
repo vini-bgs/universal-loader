@@ -1,0 +1,7 @@
+# created by virtualenv automatically
+.venv
+logs
+.flake8
+.gitignote
+__pycache__/
+*.pyc
