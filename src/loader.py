@@ -25,10 +25,10 @@ class FileLoader:
         Raises:
             ValueError: Se nenhum dos delimitadores testados conseguir ler o arquivo.
         """
-        logger.info("🕵🏻 Detectando delimitador...")
+        logger.info(f"🕵🏻 Detectando delimitador do arquivo '{path}'")
         for delimiter in [",", ";"]:
             try:
-                df = pd.read_csv(
+                df: pd.DataFrame = pd.read_csv(
                     path,
                     delimiter=delimiter,
                     encoding=self.config.encoding,
@@ -57,14 +57,14 @@ class FileLoader:
             ValueError: Se a extensão do arquivo não for suportada.
         """
         try:
-            path = Path(self.config.file_path)
+            path: Path = Path(self.config.file_path)
 
             if not path.exists():
                 raise FileNotFoundError(f"⚠️ Arquivo '{path}' não encontrado")
 
             if path.suffix == ".csv":
-                df = self._read_csv(path)
-                info = f"""📤 Arquivo '{path}' carregado:
+                df: pd.DataFrame = self._read_csv(path)
+                info: str = f"""📤 Arquivo '{path}' carregado:
                 {len(df)} linhas | {len(df.columns)} colunas"""
                 logger.success(info)
                 return df

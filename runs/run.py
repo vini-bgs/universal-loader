@@ -4,8 +4,8 @@ from src.config import FileConfig
 from src.loader import FileLoader
 
 
-FILES_DIR = Path("files/")
-SCHEMA = "dbo"
+FILES_DIR: Path = Path("files/")
+SCHEMA: str = "dbo"
 
 try:
     for file in FILES_DIR.iterdir():
@@ -13,7 +13,7 @@ try:
             logger.warning(f"⚠️  Extensão '{file.suffix}' não suportada")
             continue
 
-        config = FileConfig(
+        config: FileConfig = FileConfig(
             file_path=str(file), schema_name=SCHEMA, table_name=file.stem
         )
 
