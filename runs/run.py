@@ -2,6 +2,7 @@ from pathlib import Path
 from loguru import logger
 from src.config import FileConfig
 from src.loader import FileLoader
+from src.validator import SchemaValidator
 
 
 FILES_DIR: Path = Path("files/")
@@ -18,7 +19,8 @@ try:
         )
 
         df = FileLoader(config).load()
-        print(df.head())
+        schema = SchemaValidator(config)._infer_dtypes(df)
+        print(schema)
 
         logger.success("✅ Configuração concluída!")
 
