@@ -60,7 +60,7 @@ class FileLoader:
             path: Path = Path(self.config.file_path)
 
             if not path.exists():
-                raise FileNotFoundError(f"⚠️ Arquivo '{path}' não encontrado")
+                raise FileNotFoundError(f"⛔ Arquivo '{path}' não encontrado")
 
             if path.suffix == ".csv":
                 df: pd.DataFrame = self._read_csv(path)
@@ -70,4 +70,4 @@ class FileLoader:
                 return df
 
         except FileNotFoundError as err:
-            logger.error(err)
+            logger.error(f"⛔  {err}")
