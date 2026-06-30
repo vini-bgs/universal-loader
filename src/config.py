@@ -10,3 +10,4 @@ class FileConfig:
     encoding: str = "utf-8"
     if_exist: str = "replace"
     normalize_columns: bool = True
+    clean_id_prefixes: bool = True
