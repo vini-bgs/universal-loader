@@ -53,3 +53,20 @@ class DataCleaner:
             if sample.str.match(pattern).mean() > 0.8:
                 df[col] = df[col].astype(str).str.replace(r"^[a-zA-Z]+", "", regex=True)
                 logger.info(f"🔧 Coluna '{col}' tratada: prefixo de letras removido")
+
+    def cleaner(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Função pública que unifica todas as defs de limpeza da tabela
+
+        Args:
+            df (DataFrame):  DataFrame carregado na etapa Load.
+
+        Returns:
+            pd.DataFrame: DataFrame limpo.
+
+        Raises:
+            ValueError: Se nenhum dos delimitadores testados conseguir ler o arquivo.
+        """
+        logger.info("🏁  Iniciando limpeza da tabela...")
+        df = self._normalize_columns(df)
+        df = self._strip_columns(df)
